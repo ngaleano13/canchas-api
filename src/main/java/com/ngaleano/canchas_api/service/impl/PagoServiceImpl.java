@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ngaleano.canchas_api.exception.RecursoNoEncontradoException;
 import com.ngaleano.canchas_api.model.EstadoReserva;
@@ -13,6 +14,7 @@ import com.ngaleano.canchas_api.repository.PagoRepository;
 import com.ngaleano.canchas_api.repository.ReservaRepository;
 import com.ngaleano.canchas_api.service.PagoService;
 
+@Service
 public class PagoServiceImpl implements PagoService {
 
     @Autowired
