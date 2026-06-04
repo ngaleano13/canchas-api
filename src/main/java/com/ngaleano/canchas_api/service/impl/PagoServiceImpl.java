@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ngaleano.canchas_api.dto.PagoResponse;
 import com.ngaleano.canchas_api.exception.RecursoNoEncontradoException;
+import com.ngaleano.canchas_api.mapper.PagoMapper;
 import com.ngaleano.canchas_api.model.EstadoReserva;
 import com.ngaleano.canchas_api.model.Pago;
 import com.ngaleano.canchas_api.model.Reserva;
@@ -57,6 +59,14 @@ public class PagoServiceImpl implements PagoService {
     @Override
     public List<Pago> buscarPorReserva(Long reservaId) {
         return pagoRepository.findByReservaId(reservaId);
+    }
+
+    @Override
+    public List<PagoResponse> buscarPorReservaResponse(Long reservaId) {
+        return pagoRepository.findByReservaId(reservaId)
+                .stream()
+                .map(PagoMapper::toResponse)
+                .toList();
     }
 
 }

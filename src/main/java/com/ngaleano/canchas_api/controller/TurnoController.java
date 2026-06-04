@@ -13,24 +13,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ngaleano.canchas_api.dto.TurnoResponse;
 import com.ngaleano.canchas_api.model.Turno;
 import com.ngaleano.canchas_api.service.TurnoService;
 
 @RestController
 @RequestMapping("/api/turnos")
 public class TurnoController {
-    
+
     @Autowired
     private TurnoService turnoService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Turno> obtenerTurno(@PathVariable Long id) {
-        return ResponseEntity.ok(turnoService.buscarPorId(id));
+    public ResponseEntity<TurnoResponse> obtenerTurno(@PathVariable Long id) {
+        return ResponseEntity.ok(turnoService.buscarPorIdResponse(id));
     }
 
     @GetMapping("/canchas/{canchaId}")
-    public ResponseEntity<List<Turno>> listarTurnosPorCancha(@PathVariable Long canchaId) {
-        return ResponseEntity.ok(turnoService.listarPorCancha(canchaId));
+    public ResponseEntity<List<TurnoResponse>> listarTurnosPorCancha(@PathVariable Long canchaId) {
+        return ResponseEntity.ok(turnoService.listarPorCanchaResponse(canchaId));
     }
 
     @PostMapping

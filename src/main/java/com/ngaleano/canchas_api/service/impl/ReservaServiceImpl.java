@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ngaleano.canchas_api.dto.ReservaResponse;
 import com.ngaleano.canchas_api.exception.RecursoNoEncontradoException;
 import com.ngaleano.canchas_api.exception.TurnoNoDisponibleException;
+import com.ngaleano.canchas_api.mapper.ReservaMapper;
 import com.ngaleano.canchas_api.model.EstadoReserva;
 import com.ngaleano.canchas_api.model.Reserva;
 import com.ngaleano.canchas_api.repository.ReservaRepository;
@@ -53,6 +55,19 @@ public class ReservaServiceImpl implements ReservaService {
         Reserva reserva = buscarPorId(id);
         reserva.setEstado(EstadoReserva.CONFIRMADA);
         reservaRepository.save(reserva);
+    }
+
+    @Override
+    public ReservaResponse buscarPorIdResponse(Long id) {
+        return ReservaMapper.toResponse(buscarPorId(id));
+    }
+
+    @Override
+    public List<ReservaResponse> listarPorUsuarioResponse(Long usuarioId) {
+        return reservaRepository.findByUsuarioId(usuarioId)
+                .stream()
+                .map(ReservaMapper::toResponse)
+                .toList();
     }
 
 }

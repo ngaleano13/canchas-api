@@ -2,6 +2,7 @@ package com.ngaleano.canchas_api.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ngaleano.canchas_api.dto.PagoResponse;
 import com.ngaleano.canchas_api.model.Pago;
 import com.ngaleano.canchas_api.service.PagoService;
 
@@ -24,8 +25,8 @@ public class PagoController {
     private PagoService pagoService;
 
     @GetMapping("/reserva/{id}")
-    public ResponseEntity<List<Pago>> getPagoByReservaId(@PathVariable Long id) {
-        return ResponseEntity.ok(pagoService.buscarPorReserva(id));
+    public ResponseEntity<List<PagoResponse>> getPagoByReservaId(@PathVariable Long id) {
+        return ResponseEntity.ok(pagoService.buscarPorReservaResponse(id));
     }
 
     @PostMapping

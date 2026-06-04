@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ngaleano.canchas_api.dto.ReservaResponse;
 import com.ngaleano.canchas_api.model.Reserva;
 import com.ngaleano.canchas_api.service.ReservaService;
 
@@ -24,13 +25,13 @@ public class ReservaController {
     private ReservaService reservaService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Reserva> getReservaById(@PathVariable Long id) {
-        return ResponseEntity.ok(reservaService.buscarPorId(id));
+    public ResponseEntity<ReservaResponse> getReservaById(@PathVariable Long id) {
+        return ResponseEntity.ok(reservaService.buscarPorIdResponse(id));
     }
 
     @GetMapping("/usuario/{usuarioId}")
-    public ResponseEntity<List<Reserva>> getReservasByUsuarioId(@PathVariable Long usuarioId) {
-        return ResponseEntity.ok(reservaService.listarPorUsuario(usuarioId));
+    public ResponseEntity<List<ReservaResponse>> getReservasByUsuarioId(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(reservaService.listarPorUsuarioResponse(usuarioId));
     }
 
     @PutMapping("/{id}/cancelar")
