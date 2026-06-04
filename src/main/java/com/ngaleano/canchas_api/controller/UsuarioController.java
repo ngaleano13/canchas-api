@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ngaleano.canchas_api.dto.UsuarioResponse;
 import com.ngaleano.canchas_api.model.Usuario;
 import com.ngaleano.canchas_api.service.UsuarioService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
-    
+
     @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(usuarioService.buscarPorId(id));
+    public ResponseEntity<UsuarioResponse> obtenerUsuarioPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(usuarioService.buscarPorIdResponse(id));
     }
 
     @PostMapping("/registrar")
@@ -31,6 +31,5 @@ public class UsuarioController {
         usuarioService.registrar(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    
 
 }
