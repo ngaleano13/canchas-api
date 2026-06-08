@@ -17,6 +17,8 @@ import com.ngaleano.canchas_api.dto.TurnoResponse;
 import com.ngaleano.canchas_api.model.Turno;
 import com.ngaleano.canchas_api.service.TurnoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/turnos")
 public class TurnoController {
@@ -35,7 +37,7 @@ public class TurnoController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> crearTurno(@RequestBody Turno turno) {
+    public ResponseEntity<Void> crearTurno(@Valid @RequestBody Turno turno) {
         turnoService.crear(turno);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

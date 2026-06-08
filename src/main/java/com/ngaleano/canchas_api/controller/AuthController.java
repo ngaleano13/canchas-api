@@ -18,6 +18,8 @@ import com.ngaleano.canchas_api.model.Usuario;
 import com.ngaleano.canchas_api.security.JwtUtil;
 import com.ngaleano.canchas_api.service.UsuarioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -44,7 +46,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody Usuario usuario) {
+    public ResponseEntity<Void> register(@Valid @RequestBody Usuario usuario) {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         usuario.setRol(Rol.USER);
         usuarioService.registrar(usuario);

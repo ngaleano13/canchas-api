@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,12 +30,15 @@ public class Turno {
 
     @ManyToOne
     @JoinColumn(name = "cancha_id", nullable = false)
+    @NotNull(message = "La cancha no puede ser nula")
     private Cancha cancha;
 
     @Column(nullable = false)
+    @NotNull(message = "La hora de inicio no puede ser nula")
     private LocalTime horaInicio;
 
     @Column(nullable = false)
+    @NotNull(message = "La hora de fin no puede ser nula")
     private LocalTime horaFin;
 
     @Column(nullable = false)

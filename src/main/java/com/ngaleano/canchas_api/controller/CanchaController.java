@@ -11,6 +11,8 @@ import com.ngaleano.canchas_api.dto.CanchaResponse;
 import com.ngaleano.canchas_api.model.Cancha;
 import com.ngaleano.canchas_api.service.CanchaService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +38,7 @@ public class CanchaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> crearCancha(@RequestBody Cancha cancha) {
+    public ResponseEntity<Void> crearCancha(@Valid @RequestBody Cancha cancha) {
         canchaService.crear(cancha);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

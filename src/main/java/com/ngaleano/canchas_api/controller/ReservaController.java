@@ -17,6 +17,8 @@ import com.ngaleano.canchas_api.dto.ReservaResponse;
 import com.ngaleano.canchas_api.model.Reserva;
 import com.ngaleano.canchas_api.service.ReservaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/reservas")
 public class ReservaController {
@@ -47,7 +49,7 @@ public class ReservaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> crearReserva(@RequestBody Reserva reserva) {
+    public ResponseEntity<Void> crearReserva(@Valid @RequestBody Reserva reserva) {
         reservaService.crear(reserva);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 
